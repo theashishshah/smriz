@@ -1,8 +1,9 @@
+import SearchBar from "./components/SearchBar";
 
 export default function Home() {
     return (
-        <div>
-            Hello
+        <div className="mt-50">
+            <SearchBar />
         </div>
     );
 }
