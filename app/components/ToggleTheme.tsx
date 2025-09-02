@@ -19,7 +19,7 @@ export function ToggleTheme() {
                 className={`
                     absolute transition-all duration-500 ease-in-out w-5 h-5
                     ${
-                        theme === "light"
+                        theme === "dark"
                             ? "opacity-100 scale-100 rotate-0"
                             : "opacity-0 scale-90 rotate-45"
                     }
@@ -29,7 +29,7 @@ export function ToggleTheme() {
                 className={`
                     absolute transition-all duration-500 ease-in-out w-5 h-5
                     ${
-                        theme === "dark"
+                        theme === "light"
                             ? "opacity-100 scale-100 rotate-0"
                             : "opacity-0 scale-90 -rotate-45"
                     }
