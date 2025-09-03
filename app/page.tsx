@@ -1,10 +1,16 @@
+"use client"
+import { Provider } from "react-redux";
 import Hero from "./components/Hero";
-import SearchBar from "./components/SearchBar";
+import { store } from "./store/reduxStore";
+
+
 
 export default function Home() {
     return (
-        <div className="mt-50">
-            <Hero />
+        <div>
+            <Provider store={store}>
+                <Hero />
+            </Provider>
         </div>
     );
 }

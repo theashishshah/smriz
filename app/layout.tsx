@@ -5,6 +5,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import { Provider } from "react-redux";
 import { store } from "./store/reduxStore";
+import { BackgroundBeams } from "./components/ui/background-beams";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -28,14 +29,15 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <Provider store={store}>
-                    <ThemeProvider>
-                        <Navbar />
-                        <main className="flex-grow">{children}</main>
-                    </ThemeProvider>
-                </Provider>
-            </body>
+            <ThemeProvider>
+                <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+                    <Navbar />
+                    <div className="pointer-events-none fixed inset-0 -z-10">
+                        <BackgroundBeams />
+                    </div>
+                    <main className="pt-28">{children}</main>
+                </body>
+            </ThemeProvider>
         </html>
     );
 }

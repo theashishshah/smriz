@@ -17,13 +17,19 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         const storedTheme = localStorage.getItem("theme") as Theme;
         const preferDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        
+        if (storedTheme) {
+            setTheme(storedTheme)
+        } else if (preferDark) {
+            setTheme("dark")
+        }else setTheme("dark")
 
-        setTheme(storedTheme || preferDark ? "dark" : "light");
     }, []);
 
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);
         localStorage.setItem("theme", theme);
+        
     }, [theme]);
 
     const toggleTheme = () => {

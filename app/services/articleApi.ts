@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const rapidApiKey = process.env.RAPID_API_KEY!;
-const rapidApiHost = process.env.RAPID_API_HOST!;
-const rapidApiBaseUrl = process.env.RAPID_API_BASE_URL!;
+const rapidApiKey = process.env.NEXT_PUBLIC_RAPID_API_KEY!;
+const rapidApiHost = process.env.NEXT_PUBLIC_RAPID_API_HOST!;
+const rapidApiBaseUrl = process.env.NEXT_PUBLIC_RAPID_API_BASE_URL!;
 
 interface ArticleSummaryResponse {
     summary: string;
@@ -24,11 +24,16 @@ export const articleApi = createApi({
     }),
     endpoints: (builder) => ({
         getArticleSummary: builder.query<ArticleSummaryResponse, ArticleSummaryParams>({
-            query: (params) =>
-                `/summarize?url=${encodeURIComponent(params.articleUrl)}&lang=en&engine=2`,
+            query: (params) => {
+                const url = `/summarize?url=${encodeURIComponent(
+                    params.articleUrl
+                )}&lang=en&engine=2`;
+                console.log("Calling API:", rapidApiBaseUrl + url);
+                return url;
+            },
         }),
     }),
 });
 
 
-export const { useGetArticleSummaryQuery } = articleApi;
+export const { useGetArticleSummaryQuery, useLazyGetArticleSummaryQuery } = articleApi;
